@@ -1,5 +1,9 @@
 package pl.pjatk;
 
+import pl.pjatk.Decorator.Circle;
+import pl.pjatk.Decorator.Rectangle;
+import pl.pjatk.Decorator.RedShapeDecorator;
+import pl.pjatk.Decorator.Shape;
 import pl.pjatk.Observer.AverageScoreDisplay;
 import pl.pjatk.Observer.CricketData;
 import pl.pjatk.Observer.CurrentScoreDisplay;
@@ -9,12 +13,12 @@ import pl.pjatk.Strategy.OperationMultiply;
 public class Main {
     public static void main(String[] args) {
 
-        // TESTING STRATEGY DESIGN PATTERNS
+        System.out.println("TESTING STRATEGY DESIGN PATTERNS");
 	    Context context = new Context();
         System.out.println(context.executeStrategy(new OperationAdd(), 2,4));
         System.out.println(context.executeStrategy(new OperationMultiply(), 2,4));
 
-        // TESTING OBSERVER DESIGN PATTERNS
+        System.out.println("\nTESTING OBSERVER DESIGN PATTERNS");
         AverageScoreDisplay averageScoreDisplay = new AverageScoreDisplay();
         CurrentScoreDisplay currentScoreDisplay = new CurrentScoreDisplay();
 
@@ -29,6 +33,14 @@ public class Main {
 
         cricketData.dataChanged();
 
-        // TESTING DECORATOR DESIGN PATTERNS
+        System.out.println("\nTESTING DECORATOR DESIGN PATTERNS");
+        Shape circle = new Circle();
+
+        Shape redCircle = new RedShapeDecorator(new Circle());
+        Shape redRectangle = new RedShapeDecorator(new Rectangle());
+
+        circle.draw();
+        redCircle.draw();
+        redRectangle.draw();
     }
 }
