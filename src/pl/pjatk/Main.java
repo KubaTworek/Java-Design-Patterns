@@ -4,6 +4,9 @@ import pl.pjatk.Decorator.Circle;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Decorator.RedShapeDecorator;
 import pl.pjatk.Decorator.Shape;
+import pl.pjatk.FactoryMethod.AnimalFactoryInterface;
+import pl.pjatk.FactoryMethod.AnimalInterface;
+import pl.pjatk.FactoryMethod.ConcreteFactory;
 import pl.pjatk.Observer.AverageScoreDisplay;
 import pl.pjatk.Observer.CricketData;
 import pl.pjatk.Observer.CurrentScoreDisplay;
@@ -42,5 +45,23 @@ public class Main {
         circle.draw();
         redCircle.draw();
         redRectangle.draw();
+
+        System.out.println("\nTESTING FACTORY DESIGN PATTERNS");
+        AnimalFactoryInterface animalFactory = new ConcreteFactory();
+
+        try {
+            AnimalInterface duckType = animalFactory.GetAnimalType("Duck");
+            duckType.speak();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            AnimalInterface tigerType = animalFactory.GetAnimalType("Tiger");
+            tigerType.speak();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }
