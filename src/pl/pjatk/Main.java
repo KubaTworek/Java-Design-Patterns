@@ -10,6 +10,7 @@ import pl.pjatk.FactoryMethod.ConcreteFactory;
 import pl.pjatk.Observer.AverageScoreDisplay;
 import pl.pjatk.Observer.CricketData;
 import pl.pjatk.Observer.CurrentScoreDisplay;
+import pl.pjatk.Singleton.MakeACaptain;
 import pl.pjatk.Strategy.Context;
 import pl.pjatk.Strategy.OperationAdd;
 import pl.pjatk.Strategy.OperationMultiply;
@@ -62,6 +63,20 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        System.out.println("\nTESTING ABSTRACT FACTORY DESIGN PATTERNS");
+
+
+        System.out.println("\nTESTING SINGLETON DESIGN PATTERNS");
+        System.out.println("Making captain for our team");
+
+        MakeACaptain c1 = MakeACaptain.getCaptain();
+
+        System.out.println("Making another captain");
+        MakeACaptain c2 = MakeACaptain.getCaptain();
+
+        if(c1 == c2){
+            System.out.println("c1 and c2 are the same instance");
+        }
 
     }
 }
