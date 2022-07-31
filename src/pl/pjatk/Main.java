@@ -1,5 +1,9 @@
 package pl.pjatk;
 
+import pl.pjatk.Command.Broker;
+import pl.pjatk.Command.BuyStock;
+import pl.pjatk.Command.SellStock;
+import pl.pjatk.Command.Stock;
 import pl.pjatk.Decorator.Circle;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Decorator.RedShapeDecorator;
@@ -77,6 +81,18 @@ public class Main {
         if(c1 == c2){
             System.out.println("c1 and c2 are the same instance");
         }
+
+        System.out.println("\nTESTING COMMAND DESIGN PATTERNS");
+        Stock googleStock = new Stock();
+
+        BuyStock buyStockOrder = new BuyStock(googleStock);
+        SellStock sellStockOrder = new SellStock(googleStock);
+
+        Broker broker = new Broker();
+        broker.takeOrder(buyStockOrder);
+        broker.takeOrder(sellStockOrder);
+
+        broker.placeOrders();
 
     }
 }
