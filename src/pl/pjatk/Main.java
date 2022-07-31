@@ -9,6 +9,10 @@ import pl.pjatk.Decorator.Circle;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Decorator.RedShapeDecorator;
 import pl.pjatk.Decorator.Shape;
+import pl.pjatk.Facade.Both;
+import pl.pjatk.Facade.HotelKeeper;
+import pl.pjatk.Facade.NonVegMenu;
+import pl.pjatk.Facade.VegMenu;
 import pl.pjatk.FactoryMethod.AnimalFactoryInterface;
 import pl.pjatk.FactoryMethod.AnimalInterface;
 import pl.pjatk.FactoryMethod.ConcreteFactory;
@@ -108,6 +112,12 @@ public class Main {
         advancedMediaPlayerAdapter2.play("vlc", "far far away.vlc");
 
         audioPlayer.play("vlc", "far far away.vlc");
+
+        HotelKeeper keeper = new HotelKeeper();
+
+        VegMenu v = keeper.getVegMenu();
+        NonVegMenu nv = keeper.getNonVegMenu();
+        Both b = keeper.getVegNonMenu();
 
     }
 }
