@@ -14,6 +14,10 @@ import pl.pjatk.Facade.VegMenu;
 import pl.pjatk.FactoryMethod.AnimalFactoryInterface;
 import pl.pjatk.FactoryMethod.AnimalInterface;
 import pl.pjatk.FactoryMethod.ConcreteFactory;
+import pl.pjatk.Iterator.Arts;
+import pl.pjatk.Iterator.IteratorInterface;
+import pl.pjatk.Iterator.Science;
+import pl.pjatk.Iterator.SubjectInterface;
 import pl.pjatk.Observer.AverageScoreDisplay;
 import pl.pjatk.Observer.CricketData;
 import pl.pjatk.Observer.CurrentScoreDisplay;
@@ -146,5 +150,21 @@ public class Main {
         System.out.println("-- We changed the template to a store order --");
         OrderProcessTemplate storeOrder = new StoreOrder();
         storeOrder.processOrder(true);
+
+        System.out.println("\nTESTING ITERATOR DESIGN PATTERNS");
+        SubjectInterface Sc_subjects = new Science();
+        SubjectInterface Ar_subjects = new Arts();
+
+        IteratorInterface Sc_iterator = Sc_subjects.createIterator();
+        IteratorInterface Ar_iterator = Ar_subjects.createIterator();
+
+        System.out.println("Science");
+        while(!Sc_iterator.isDone()) {
+            System.out.println(Sc_iterator.next());
+        }
+        System.out.println("Arts");
+        while(!Ar_iterator.isDone()) {
+            System.out.println(Ar_iterator.next());
+        }
     }
 }
