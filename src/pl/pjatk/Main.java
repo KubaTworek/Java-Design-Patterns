@@ -2,10 +2,7 @@ package pl.pjatk;
 
 import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
-import pl.pjatk.Command.Broker;
-import pl.pjatk.Command.BuyStock;
-import pl.pjatk.Command.SellStock;
-import pl.pjatk.Command.Stock;
+import pl.pjatk.Command.*;
 import pl.pjatk.Decorator.Circle;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Decorator.RedShapeDecorator;
@@ -24,6 +21,10 @@ import pl.pjatk.Singleton.MakeACaptain;
 import pl.pjatk.Strategy.Context;
 import pl.pjatk.Strategy.OperationAdd;
 import pl.pjatk.Strategy.OperationMultiply;
+import pl.pjatk.Template.NetOrder;
+import pl.pjatk.Template.OrderProcessTemplate;
+import pl.pjatk.Template.StoreOrder;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -138,5 +139,12 @@ public class Main {
         NonVegMenu nv = keeper.getNonVegMenu();
         Both b = keeper.getVegNonMenu();
 
+        System.out.println("\nTESTING TEMPLATE DESIGN PATTERNS");
+        OrderProcessTemplate netOrder = new NetOrder();
+        netOrder.processOrder(true);
+
+        System.out.println("-- We changed the template to a store order --");
+        OrderProcessTemplate storeOrder = new StoreOrder();
+        storeOrder.processOrder(true);
     }
 }
