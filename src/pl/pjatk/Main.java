@@ -1,5 +1,6 @@
 package pl.pjatk;
 
+import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
 import pl.pjatk.Command.Broker;
 import pl.pjatk.Command.BuyStock;
@@ -73,6 +74,23 @@ public class Main {
         }
 
         System.out.println("\nTESTING ABSTRACT FACTORY DESIGN PATTERNS");
+        MovieFactoryInterface actionMovies = FactoryProducer.getFactory("Action");
+
+        HollyWoodMovieInterface hAction = actionMovies.GetHollyWoodMovie();
+        BollyWoodMovieInterface bAction = actionMovies.GetBollyWoodMovie();
+
+        System.out.println("\nAction movies are:");
+        System.out.println(hAction.getMovieName());
+        System.out.println(bAction.getMovieName());
+
+        MovieFactoryInterface comedyMovies = FactoryProducer.getFactory("Comedy");
+
+        HollyWoodMovieInterface hComedy = comedyMovies.GetHollyWoodMovie();
+        BollyWoodMovieInterface bComedy = comedyMovies.GetBollyWoodMovie();
+
+        System.out.println("\nComedy movies are:");
+        System.out.println(hComedy.getMovieName());
+        System.out.println(bComedy.getMovieName());
 
 
         System.out.println("\nTESTING SINGLETON DESIGN PATTERNS");
@@ -113,6 +131,7 @@ public class Main {
 
         audioPlayer.play("vlc", "far far away.vlc");
 
+        System.out.println("\nTESTING FACADE DESIGN PATTERNS");
         HotelKeeper keeper = new HotelKeeper();
 
         VegMenu v = keeper.getVegMenu();
