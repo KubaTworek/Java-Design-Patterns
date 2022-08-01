@@ -3,6 +3,9 @@ package pl.pjatk;
 import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
 import pl.pjatk.Command.*;
+import pl.pjatk.Composite.Faculty;
+import pl.pjatk.Composite.Professor;
+import pl.pjatk.Composite.Supervisor;
 import pl.pjatk.Decorator.Circle;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Decorator.RedShapeDecorator;
@@ -28,6 +31,8 @@ import pl.pjatk.Strategy.OperationMultiply;
 import pl.pjatk.Template.NetOrder;
 import pl.pjatk.Template.OrderProcessTemplate;
 import pl.pjatk.Template.StoreOrder;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -166,5 +171,60 @@ public class Main {
         while(!Ar_iterator.isDone()) {
             System.out.println(Ar_iterator.next());
         }
+
+        System.out.println("\nTESTING COMPOSITE DESIGN PATTERNS");
+        Supervisor technologyDean = new Supervisor("Dr. Mike", "Dean of Technology");
+        Supervisor chairOfMathDepartment = new Supervisor("Dr. John", "Chair of Math Department");
+        Supervisor chairOfComputerScienceDepartment = new Supervisor("Dr. Ian", "Chair Of CS Department");
+
+        Professor mathProf1 = new Professor("Math Professor1", "Adjunct", 302);
+        Professor mathProf2 = new Professor("Math Professor2", "Associate", 303);
+
+        Professor cseProf1 = new Professor ("CSE Professor1", "Adjunct", 507);
+        Professor cseProf2 = new Professor ("CSE Professor2", "Professor", 508);
+        Professor cseProf3 = new Professor ("CSE Professor3", "Professor", 509);
+
+        technologyDean.add(chairOfMathDepartment );
+        technologyDean.add(chairOfComputerScienceDepartment );
+
+        chairOfMathDepartment.add(mathProf1);
+        chairOfMathDepartment.add(mathProf2);
+
+        chairOfComputerScienceDepartment.add(cseProf1);
+        chairOfComputerScienceDepartment.add(cseProf2);
+        chairOfComputerScienceDepartment.add(cseProf3);
+
+        System.out.println("\nThe college has the following structure\n");
+
+        System.out.println(technologyDean.getDetails());
+        List<Faculty> chairs=technologyDean.getMyFaculty();
+
+        for(int i=0;i<chairs.size();i++)
+        {
+            System.out.println("\t"+chairs.get(i).getDetails());
+        }
+
+        List<Faculty> mathProfessors= chairOfMathDepartment.getMyFaculty();
+        for(int i=0;i<mathProfessors.size();i++)
+        {
+            System.out.println("\t\t"+ mathProfessors.get(i).getDetails());
+        }
+
+        List<Faculty> cseProfessors= chairOfComputerScienceDepartment.getMyFaculty();
+        for(int i=0;i<cseProfessors.size();i++)
+        {
+            System.out.println("\t\t"+cseProfessors.get(i).getDetails());
+        }
+
+        chairOfComputerScienceDepartment.remove(cseProf2);
+
+        System.out.println("\n After CSE Professor2 leaving the organization- CSE department has following faculty:");
+
+        cseProfessors = chairOfComputerScienceDepartment.getMyFaculty();
+        for(int i=0;i< cseProfessors.size();i++)
+        {
+            System.out.println("\t\t"+ cseProfessors.get(i).getDetails());
+        }
+    }
     }
 }
