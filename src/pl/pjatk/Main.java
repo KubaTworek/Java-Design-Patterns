@@ -9,6 +9,8 @@ import pl.pjatk.Facade.*;
 import pl.pjatk.FactoryMethod.*;
 import pl.pjatk.Iterator.*;
 import pl.pjatk.Observer.*;
+import pl.pjatk.Proxy.Internet;
+import pl.pjatk.Proxy.ProxyInternet;
 import pl.pjatk.Singleton.*;
 import pl.pjatk.State.AlertStateContext;
 import pl.pjatk.State.Silent;
@@ -220,6 +222,18 @@ public class Main {
         stateContext.alert();
         stateContext.alert();
         stateContext.alert();
+
+        System.out.println("\nTESTING PROXY DESIGN PATTERNS");
+        Internet internet = new ProxyInternet();
+
+        try {
+            internet.connectTo("jasonfedin.org");
+            internet.connectTo("whatever.com");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+
 
     }
 
