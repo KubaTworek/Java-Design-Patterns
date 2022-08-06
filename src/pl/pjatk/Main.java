@@ -3,34 +3,17 @@ package pl.pjatk;
 import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
 import pl.pjatk.Command.*;
-import pl.pjatk.Composite.Faculty;
-import pl.pjatk.Composite.Professor;
-import pl.pjatk.Composite.Supervisor;
-import pl.pjatk.Decorator.Circle;
-import pl.pjatk.Decorator.Rectangle;
-import pl.pjatk.Decorator.RedShapeDecorator;
-import pl.pjatk.Decorator.Shape;
-import pl.pjatk.Facade.Both;
-import pl.pjatk.Facade.HotelKeeper;
-import pl.pjatk.Facade.NonVegMenu;
-import pl.pjatk.Facade.VegMenu;
-import pl.pjatk.FactoryMethod.AnimalFactoryInterface;
-import pl.pjatk.FactoryMethod.AnimalInterface;
-import pl.pjatk.FactoryMethod.ConcreteFactory;
-import pl.pjatk.Iterator.Arts;
-import pl.pjatk.Iterator.IteratorInterface;
-import pl.pjatk.Iterator.Science;
-import pl.pjatk.Iterator.SubjectInterface;
-import pl.pjatk.Observer.AverageScoreDisplay;
-import pl.pjatk.Observer.CricketData;
-import pl.pjatk.Observer.CurrentScoreDisplay;
-import pl.pjatk.Singleton.MakeACaptain;
-import pl.pjatk.Strategy.Context;
-import pl.pjatk.Strategy.OperationAdd;
-import pl.pjatk.Strategy.OperationMultiply;
-import pl.pjatk.Template.NetOrder;
-import pl.pjatk.Template.OrderProcessTemplate;
-import pl.pjatk.Template.StoreOrder;
+import pl.pjatk.Composite.*;
+import pl.pjatk.Decorator.*;
+import pl.pjatk.Facade.*;
+import pl.pjatk.FactoryMethod.*;
+import pl.pjatk.Iterator.*;
+import pl.pjatk.Observer.*;
+import pl.pjatk.Singleton.*;
+import pl.pjatk.State.AlertStateContext;
+import pl.pjatk.State.Silent;
+import pl.pjatk.Strategy.*;
+import pl.pjatk.Template.*;
 
 import java.util.List;
 
@@ -225,6 +208,19 @@ public class Main {
         {
             System.out.println("\t\t"+ cseProfessors.get(i).getDetails());
         }
+
+        System.out.println("\nTESTING STATE DESIGN PATTERNS");
+        AlertStateContext stateContext = new AlertStateContext();
+
+        stateContext.alert();
+        stateContext.alert();
+
+        stateContext.setState(new Silent());
+
+        stateContext.alert();
+        stateContext.alert();
+        stateContext.alert();
+
     }
-    }
+
 }
