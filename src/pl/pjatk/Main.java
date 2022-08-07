@@ -4,6 +4,7 @@ import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
 import pl.pjatk.Bridge.*;
 import pl.pjatk.Builder.*;
+import pl.pjatk.ChainOfResponsibility.*;
 import pl.pjatk.Command.*;
 import pl.pjatk.Composite.*;
 import pl.pjatk.Decorator.*;
@@ -268,6 +269,25 @@ public class Main {
         System.out.println("Non-Veg Meal");
         nonVegMeal.showItems();
         System.out.println("Total Cost: " + nonVegMeal.getCost());
+
+        System.out.println("\nTESTING CHAIN OF RESPONSIBILITY DESIGN PATTERNS");
+        ReceiverInterface faxHandler, emailHandler;
+
+        emailHandler = new EmailErrorHandler();
+        faxHandler = new FaxErrorHandler();
+        faxHandler.setNextChain(emailHandler);
+
+        IssueRaiser raiser = new IssueRaiser(faxHandler);
+
+        Message m1 = new Message("Fax is whatever", MessagePriority.High);
+        Message m2 = new Message("Email is whatever", MessagePriority.High);
+        Message m3 = new Message("Fax is downgrade", MessagePriority.Normal);
+        Message m4 = new Message("Email is downgrade", MessagePriority.Normal);
+
+        raiser.raiseMessage(m1);
+        raiser.raiseMessage(m2);
+        raiser.raiseMessage(m3);
+        raiser.raiseMessage(m4);
 
 
     }
