@@ -3,6 +3,7 @@ package pl.pjatk;
 import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
 import pl.pjatk.Bridge.*;
+import pl.pjatk.Builder.*;
 import pl.pjatk.Command.*;
 import pl.pjatk.Composite.*;
 import pl.pjatk.Decorator.*;
@@ -247,6 +248,26 @@ public class Main {
         ShapeBridge rectangleShape = new RectangleBridge(red);
         rectangleShape.drawShape(50);
         rectangleShape.modifyBorder(50,2);
+
+        System.out.println("\nTESTING BRIDGE DESIGN PATTERNS");
+        Director director = new Director();
+
+        MealBuilderInterface vegMealBuilder = new VegMealBuilder();
+        MealBuilderInterface nonVegMealBuilder = new NonVegMealBuilder();
+
+        director.construct(vegMealBuilder);
+        Meal vegMeal = vegMealBuilder.getMeal();
+
+        System.out.println("Veg Meal");
+        vegMeal.showItems();
+        System.out.println("Total Cost: " + vegMeal.getCost());
+
+        director.construct(nonVegMealBuilder);
+        Meal nonVegMeal = nonVegMealBuilder.getMeal();
+
+        System.out.println("Non-Veg Meal");
+        nonVegMeal.showItems();
+        System.out.println("Total Cost: " + nonVegMeal.getCost());
 
 
     }
