@@ -2,9 +2,11 @@ package pl.pjatk;
 
 import pl.pjatk.AbstractFactoryMethod.*;
 import pl.pjatk.Adapter.*;
+import pl.pjatk.Bridge.*;
 import pl.pjatk.Command.*;
 import pl.pjatk.Composite.*;
 import pl.pjatk.Decorator.*;
+import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Facade.*;
 import pl.pjatk.FactoryMethod.*;
 import pl.pjatk.Iterator.*;
@@ -233,6 +235,18 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        System.out.println("\nTESTING BRIDGE DESIGN PATTERNS");
+        System.out.println("\nColoring Triangle");
+        ColorInterface green = new GreenColor();
+        ShapeBridge triangleShape = new Triangle(green);
+        triangleShape.drawShape(20);
+        triangleShape.modifyBorder(20,3);
+
+        System.out.println("\nColoring Rectangle");
+        ColorInterface red = new RedColor();
+        ShapeBridge rectangleShape = new RectangleBridge(red);
+        rectangleShape.drawShape(50);
+        rectangleShape.modifyBorder(50,2);
 
 
     }
