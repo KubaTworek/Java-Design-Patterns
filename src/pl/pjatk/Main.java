@@ -11,6 +11,9 @@ import pl.pjatk.Decorator.*;
 import pl.pjatk.Decorator.Rectangle;
 import pl.pjatk.Facade.*;
 import pl.pjatk.FactoryMethod.*;
+import pl.pjatk.Flyweight.CounterStrike;
+import pl.pjatk.Flyweight.Player;
+import pl.pjatk.Flyweight.PlayerFactory;
 import pl.pjatk.Iterator.*;
 import pl.pjatk.Observer.*;
 import pl.pjatk.Proxy.Internet;
@@ -288,6 +291,15 @@ public class Main {
         raiser.raiseMessage(m2);
         raiser.raiseMessage(m3);
         raiser.raiseMessage(m4);
+
+        System.out.println("\nTESTING FLYWEIGHT DESIGN PATTERNS");
+        for (int i = 0; i < 10; i++)  {
+            Player p = PlayerFactory.getPlayer(CounterStrike.getRandPlayerType());
+
+            p.assignWeapon(CounterStrike.getRandWeapon());
+
+            p.mission();
+        }
 
 
     }
