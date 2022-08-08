@@ -18,6 +18,9 @@ import pl.pjatk.Interpreter.ContextInterpreter;
 import pl.pjatk.Interpreter.Expression;
 import pl.pjatk.Interpreter.Interpreter;
 import pl.pjatk.Iterator.*;
+import pl.pjatk.Mediator.AuctionBuyer;
+import pl.pjatk.Mediator.AuctionMediator;
+import pl.pjatk.Mediator.Buyer;
 import pl.pjatk.Observer.*;
 import pl.pjatk.Proxy.Internet;
 import pl.pjatk.Proxy.ProxyInternet;
@@ -317,7 +320,27 @@ public class Main {
         ContextInterpreter ic3 = new ContextInterpreter("Lucy");
         System.out.println("Lucy is male? " + isMale.interpret(ic3));
 
+        System.out.println("\nTESTING MEDIATOR DESIGN PATTERNS");
+        AuctionMediator med = new AuctionMediator();
 
+        Buyer b1 = new AuctionBuyer(med,"Jason");
+        Buyer b2 = new AuctionBuyer(med,"Ian");
+        Buyer b3 = new AuctionBuyer(med,"Myra");
+
+        med.addBuyer(b1);
+        med.addBuyer(b2);
+        med.addBuyer(b3);
+
+        System.out.println("Welcome to the auction. Tonight we are selling a vacation to Zanzibar");
+        System.out.println("-------------------------------------------------------");
+        System.out.println("Waiting for the buyers offers..");
+
+        b1.bid(1800);
+        b2.bid(2000);
+        b3.bid(780);
+
+        System.out.println("-------------------------------------------------------");
+        med.findHighestBidder();
     }
 
 }
