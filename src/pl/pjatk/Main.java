@@ -14,6 +14,9 @@ import pl.pjatk.FactoryMethod.*;
 import pl.pjatk.Flyweight.CounterStrike;
 import pl.pjatk.Flyweight.Player;
 import pl.pjatk.Flyweight.PlayerFactory;
+import pl.pjatk.Interpreter.ContextInterpreter;
+import pl.pjatk.Interpreter.Expression;
+import pl.pjatk.Interpreter.Interpreter;
 import pl.pjatk.Iterator.*;
 import pl.pjatk.Observer.*;
 import pl.pjatk.Proxy.Internet;
@@ -300,6 +303,19 @@ public class Main {
 
             p.mission();
         }
+
+        System.out.println("\nTESTING INTERPRETER DESIGN PATTERNS");
+        Expression isMale = Interpreter.getMaleExpression();
+        Expression isMarriedWoman = Interpreter.getMarriedWomanExpression();
+
+        ContextInterpreter ic = new ContextInterpreter("John");
+        System.out.println("John is male? " + isMale.interpret(ic));
+
+        ContextInterpreter ic2 = new ContextInterpreter("Married Julie");
+        System.out.println("Julie is a married women? " + isMarriedWoman.interpret(ic2));
+
+        ContextInterpreter ic3 = new ContextInterpreter("Lucy");
+        System.out.println("Lucy is male? " + isMale.interpret(ic3));
 
 
     }
