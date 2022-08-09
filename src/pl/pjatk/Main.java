@@ -21,6 +21,8 @@ import pl.pjatk.Iterator.*;
 import pl.pjatk.Mediator.AuctionBuyer;
 import pl.pjatk.Mediator.AuctionMediator;
 import pl.pjatk.Mediator.Buyer;
+import pl.pjatk.Memento.Caretaker;
+import pl.pjatk.Memento.Originator;
 import pl.pjatk.Observer.*;
 import pl.pjatk.Proxy.Internet;
 import pl.pjatk.Proxy.ProxyInternet;
@@ -341,6 +343,27 @@ public class Main {
 
         System.out.println("-------------------------------------------------------");
         med.findHighestBidder();
+
+        System.out.println("\nTESTING MEMENTO DESIGN PATTERNS");
+        Originator originator = new Originator();
+        Caretaker caretaker = new Caretaker();
+
+        originator.setState("State #1");
+        originator.setState("State #2");
+        caretaker.add(originator.saveStateToMemento());
+
+        originator.setState("State #3");
+        caretaker.add(originator.saveStateToMemento());
+
+        originator.setState("State #4");
+        System.out.println("Current State: " + originator.getState());
+
+        originator.getStateFromMemento(caretaker.get(0));
+        System.out.println("Current State: " + originator.getState());
+
+        originator.getStateFromMemento(caretaker.get(1));
+        System.out.println("Current State: " + originator.getState());
+
     }
 
 }
