@@ -33,6 +33,7 @@ import pl.pjatk.State.AlertStateContext;
 import pl.pjatk.State.Silent;
 import pl.pjatk.Strategy.*;
 import pl.pjatk.Template.*;
+import pl.pjatk.Visitor.*;
 
 import java.util.List;
 
@@ -381,7 +382,21 @@ public class Main {
             e.printStackTrace();
         }
 
+        System.out.println("\nTESTING VISITOR DESIGN PATTERNS");
+        Visitable myBook = new Book(8.52,1.05);
+        Visitable myCD = new CD(18.52,3.05);
+        Visitable myDVD = new DVD(6.53,4.02);
 
+        VisitorClient.items.add(myBook);
+        VisitorClient.items.add(myCD);
+        VisitorClient.items.add(myDVD);
 
+        Visitor visitor = new USPostageVisitor();
+        double myPostage = VisitorClient.calculatePostage(visitor);
+        System.out.println("The total postage for my items shipped to US is: " + myPostage);
+
+        visitor = new SouthAmericaPostageVisitor();
+        myPostage = VisitorClient.calculatePostage(visitor);
+        System.out.println("The total postage for my items shipped to South America is: " + myPostage);
     }
 }
