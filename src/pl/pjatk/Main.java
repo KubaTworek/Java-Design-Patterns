@@ -24,6 +24,8 @@ import pl.pjatk.Mediator.Buyer;
 import pl.pjatk.Memento.Caretaker;
 import pl.pjatk.Memento.Originator;
 import pl.pjatk.Observer.*;
+import pl.pjatk.Prototype.BasicCar;
+import pl.pjatk.Prototype.BasicCarCache;
 import pl.pjatk.Proxy.Internet;
 import pl.pjatk.Proxy.ProxyInternet;
 import pl.pjatk.Singleton.*;
@@ -364,6 +366,22 @@ public class Main {
         originator.getStateFromMemento(caretaker.get(1));
         System.out.println("Current State: " + originator.getState());
 
-    }
+        System.out.println("\nTESTING PROTOTYPE DESIGN PATTERNS");
+        BasicCarCache.loadCache();
 
+        try {
+            BasicCar bc1 = (BasicCar) BasicCarCache.getCar("Green Nano");
+            bc1.price = bc1.price+BasicCar.setPrice();
+            System.out.println("Car is: " + bc1.getModelName() + " and it's pricec is Rs. " + bc1.price);
+
+            bc1 = (BasicCar) BasicCarCache.getCar("Ford Yellow");
+            bc1.price = bc1.price+BasicCar.setPrice();
+            System.out.println("Car is: " + bc1.getModelName() + " and it's pricec is Rs. " + bc1.price);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
 }
